@@ -1,0 +1,51 @@
+class Solution {
+public:
+    int dp[1000][1000]={-1};
+    int helper(vector<vector<int>>& c,int a,int b)
+    {
+        
+       if(a+b==0)
+    return 0;
+        
+        
+        
+        
+        if(dp[a][b]!=-1)
+           return dp[a][b];
+        
+        cout<<a<<" "<<b<<"  ";
+       
+        int left=INT_MAX,right=INT_MAX;
+           if(a!=0)
+           left=c[a+b-1][0]+helper(c,a-1,b);
+        
+            if(b!=0)
+           right=c[a+b-1][1]+helper(c,a,b-1);
+        
+        
+        dp[a][b]=min(left,right);
+        
+        return dp[a][b];
+        
+        
+        
+        
+    }
+    
+    int twoCitySchedCost(vector<vector<int>>& c) {
+        
+        
+        
+        for(int i=0;i<1000;i++)
+            for(int j=0;j<1000;j++)
+                dp[i][j]=-1;
+        int n=c.size();
+       return helper(c,n/2,n/2);
+    // return 1; 
+        
+        
+        
+        
+        
+    }
+};
